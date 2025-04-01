@@ -1,26 +1,849 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>showcase-sphere-essence</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+    <title>Developer Portfolio</title>
+    <meta name="description" content="Software Developer Portfolio" />
+    <meta name="author" content="John Developer" />
 
-    <meta property="og:title" content="Lovable Generated Project" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:title" content="Developer Portfolio" />
+    <meta property="og:description" content="Software Developer Portfolio" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure Tailwind -->
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0EA5E9',
+              secondary: '#e5e7eb',
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+              'slide-up': 'slideUp 0.5s ease-out forwards'
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' }
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      
+      .animate-slide-up {
+        animation: slideUp 0.5s ease-out forwards;
+      }
+      
+      .delay-100 {
+        animation-delay: 0.1s;
+      }
+      
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+      
+      body {
+        transition: background-color 0.3s, color 0.3s;
+      }
+    </style>
   </head>
 
-  <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Navigation -->
+    <header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <a href="#" class="text-xl font-bold text-primary">
+          Dev<span class="dark:text-white text-gray-900">Portfolio</span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-gray-900 dark:text-white" id="menuButton" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="#home" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Home</a>
+          <a href="#about" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">About</a>
+          <a href="#skills" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Skills</a>
+          <a href="#experience" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Experience</a>
+          <a href="#projects" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Projects</a>
+          <a href="#contact" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Contact</a>
+          
+          <!-- Theme Toggle -->
+          <button id="themeToggle" class="rounded-full p-2 bg-transparent" aria-label="Toggle theme">
+            <!-- Sun icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            
+            <!-- Moon icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon hidden">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 py-4 animate-fade-in">
+          <div class="container mx-auto px-4 flex flex-col space-y-4">
+            <a href="#home" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Home</a>
+            <a href="#about" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">About</a>
+            <a href="#skills" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Skills</a>
+            <a href="#experience" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Experience</a>
+            <a href="#projects" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Projects</a>
+            <a href="#contact" class="px-4 py-2 text-sm font-medium transition-colors hover:text-primary">Contact</a>
+            <div class="pt-2 flex justify-between items-center">
+              <span class="text-sm text-gray-500 dark:text-gray-400">Toggle theme</span>
+              <button id="mobileThemeToggle" class="rounded-full p-2 bg-transparent" aria-label="Toggle theme">
+                <!-- Sun icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mobile-sun-icon">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                
+                <!-- Moon icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mobile-moon-icon hidden">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="pt-32 pb-16 md:pt-40 md:pb-24">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl">
+            <p class="text-primary font-medium mb-4 animate-fade-in">Hi, my name is</p>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-4 animate-slide-up">
+              <span class="block">John Developer.</span>
+              <span class="block text-gray-500 dark:text-gray-400 mt-2">I build things for the web.</span>
+            </h1>
+            <p class="text-lg text-gray-500 dark:text-gray-400 mb-8 max-w-xl animate-slide-up delay-100">
+              I'm a software developer specializing in building exceptional digital experiences. 
+              Currently, I'm focused on building accessible, human-centered products.
+            </p>
+            <div class="animate-slide-up delay-200">
+              <a href="#projects" class="border border-primary text-primary hover:bg-primary hover:text-white px-5 py-2 rounded-md transition-colors inline-flex items-center gap-2">
+                Check out my work 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-16 md:py-24 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-semibold mb-8 text-center">About Me</h2>
+            <div class="grid md:grid-cols-5 gap-8 items-center">
+              <div class="md:col-span-3 order-2 md:order-1">
+                <p class="mb-4">
+                  Hello! I'm John, a passionate software developer with over 5 years of 
+                  experience building elegant, responsive and user-friendly websites and 
+                  applications. My journey in tech began with a Computer Science degree 
+                  from Tech University, and I've been continuously learning and expanding 
+                  my skills ever since.
+                </p>
+                <p class="mb-4">
+                  I've had the privilege of working across diverse industries, which has 
+                  given me a unique perspective on software development and problem-solving. 
+                  From healthcare to finance to e-commerce, I bring adaptability and 
+                  industry-specific knowledge to my technical expertise.
+                </p>
+                <p>
+                  Outside of coding, I enjoy hiking, playing chess, and contributing to open-source 
+                  projects. I'm always looking for new challenges and opportunities to grow.
+                </p>
+              </div>
+              <div class="md:col-span-2 order-1 md:order-2 flex justify-center">
+                <div class="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary">
+                  <div class="w-full h-full bg-gradient-to-br from-primary to-blue-700 animate-pulse"></div>
+                  <div class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold">JD</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-semibold mb-4">My Skills</h2>
+            <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+              I've worked with a wide range of technologies across the full stack. 
+              Here are the key skills and technologies I've mastered over the years.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Frontend Development -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-2 mb-4 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+                <h3 class="text-xl font-medium">Frontend Development</h3>
+              </div>
+              <div class="flex flex-wrap">
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">HTML5</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">CSS3</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">JavaScript</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">TypeScript</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">React</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Vue.js</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Angular</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Next.js</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">TailwindCSS</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">SCSS</span>
+              </div>
+            </div>
+
+            <!-- Backend Development -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-2 mb-4 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+                <h3 class="text-xl font-medium">Backend Development</h3>
+              </div>
+              <div class="flex flex-wrap">
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Node.js</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Express</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Python</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Django</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Ruby on Rails</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">GraphQL</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">REST API</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">PHP</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Laravel</span>
+              </div>
+            </div>
+
+            <!-- Database -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-2 mb-4 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+                <h3 class="text-xl font-medium">Database</h3>
+              </div>
+              <div class="flex flex-wrap">
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">MongoDB</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">PostgreSQL</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">MySQL</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Firebase</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Redis</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">DynamoDB</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">SQL Server</span>
+              </div>
+            </div>
+
+            <!-- Mobile Development -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-2 mb-4 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                <h3 class="text-xl font-medium">Mobile Development</h3>
+              </div>
+              <div class="flex flex-wrap">
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">React Native</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Flutter</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Ionic</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Android</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">iOS</span>
+              </div>
+            </div>
+
+            <!-- DevOps & Tools -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-2 mb-4 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <h3 class="text-xl font-medium">DevOps & Tools</h3>
+              </div>
+              <div class="flex flex-wrap">
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Git</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">GitHub</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">CI/CD</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Docker</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Kubernetes</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">AWS</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Azure</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Nginx</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Jenkins</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Linux</span>
+              </div>
+            </div>
+
+            <!-- Programming Languages -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-2 mb-4 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                <h3 class="text-xl font-medium">Programming Languages</h3>
+              </div>
+              <div class="flex flex-wrap">
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">JavaScript</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Python</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">TypeScript</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">PHP</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Ruby</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Java</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">C#</span>
+                <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm inline-block mr-2 mb-2">Go</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="py-16 md:py-24 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-semibold mb-4">
+              <span class="inline-block">Work Experience</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-3 mb-1">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </h2>
+            <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+              I've had the opportunity to work across various industries, each providing unique 
+              challenges and learning experiences. Here's where my journey has taken me so far.
+            </p>
+          </div>
+
+          <div class="max-w-4xl mx-auto">
+            <!-- Healthcare Experience -->
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 shadow-sm mb-6">
+              <div class="md:flex md:justify-between md:items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-semibold mb-1">Senior Frontend Developer</h3>
+                  <div class="flex items-center text-gray-500 dark:text-gray-400 mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                      <line x1="7" y1="2" x2="7" y2="22"></line>
+                      <line x1="17" y1="2" x2="17" y2="22"></line>
+                      <line x1="2" y1="12" x2="22" y2="12"></line>
+                      <line x1="2" y1="7" x2="7" y2="7"></line>
+                      <line x1="2" y1="17" x2="7" y2="17"></line>
+                      <line x1="17" y1="17" x2="22" y2="17"></line>
+                      <line x1="17" y1="7" x2="22" y2="7"></line>
+                    </svg>
+                    <span class="mr-3">HealthTech Solutions</span>
+                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded text-xs font-medium">
+                      Healthcare
+                    </span>
+                  </div>
+                </div>
+                <div class="flex items-center text-gray-500 dark:text-gray-400 mt-2 md:mt-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Jan 2021 - Present</span>
+                </div>
+              </div>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>Led the frontend development of a patient management platform used by over 50 hospitals nationwide.</li>
+                <li>Implemented a responsive UI with React and TypeScript that decreased patient check-in time by 40%.</li>
+                <li>Collaborated with UX designers to create HIPAA-compliant interfaces focused on accessibility.</li>
+                <li>Mentored junior developers and conducted code reviews to maintain high quality standards.</li>
+                <li>Optimized application performance, achieving a 60% reduction in load time.</li>
+              </ul>
+            </div>
+
+            <!-- Finance Experience -->
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 shadow-sm mb-6">
+              <div class="md:flex md:justify-between md:items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-semibold mb-1">Full Stack Developer</h3>
+                  <div class="flex items-center text-gray-500 dark:text-gray-400 mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                      <line x1="7" y1="2" x2="7" y2="22"></line>
+                      <line x1="17" y1="2" x2="17" y2="22"></line>
+                      <line x1="2" y1="12" x2="22" y2="12"></line>
+                      <line x1="2" y1="7" x2="7" y2="7"></line>
+                      <line x1="2" y1="17" x2="7" y2="17"></line>
+                      <line x1="17" y1="17" x2="22" y2="17"></line>
+                      <line x1="17" y1="7" x2="22" y2="7"></line>
+                    </svg>
+                    <span class="mr-3">FinanceFlow Systems</span>
+                    <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-0.5 rounded text-xs font-medium">
+                      Finance
+                    </span>
+                  </div>
+                </div>
+                <div class="flex items-center text-gray-500 dark:text-gray-400 mt-2 md:mt-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Mar 2018 - Dec 2020</span>
+                </div>
+              </div>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>Developed and maintained a financial analytics dashboard using React, Node.js, and MongoDB.</li>
+                <li>Built RESTful APIs with Express.js that processed over 10,000 transactions daily.</li>
+                <li>Implemented secure authentication systems with OAuth 2.0 and JWT for banking-grade security.</li>
+                <li>Collaborated with data scientists to visualize complex financial data using D3.js.</li>
+                <li>Participated in agile development cycles with bi-weekly sprints and regular feature releases.</li>
+              </ul>
+            </div>
+
+            <!-- E-commerce Experience -->
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 shadow-sm">
+              <div class="md:flex md:justify-between md:items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-semibold mb-1">Web Developer</h3>
+                  <div class="flex items-center text-gray-500 dark:text-gray-400 mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                      <line x1="7" y1="2" x2="7" y2="22"></line>
+                      <line x1="17" y1="2" x2="17" y2="22"></line>
+                      <line x1="2" y1="12" x2="22" y2="12"></line>
+                      <line x1="2" y1="7" x2="7" y2="7"></line>
+                      <line x1="2" y1="17" x2="7" y2="17"></line>
+                      <line x1="17" y1="17" x2="22" y2="17"></line>
+                      <line x1="17" y1="7" x2="22" y2="7"></line>
+                    </svg>
+                    <span class="mr-3">RetailRocket E-commerce</span>
+                    <span class="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-2 py-0.5 rounded text-xs font-medium">
+                      E-commerce
+                    </span>
+                  </div>
+                </div>
+                <div class="flex items-center text-gray-500 dark:text-gray-400 mt-2 md:mt-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Jun 2016 - Feb 2018</span>
+                </div>
+              </div>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>Created responsive e-commerce websites for clients with Vue.js and Laravel.</li>
+                <li>Implemented shopping cart systems and payment gateways that processed over $1M in transactions.</li>
+                <li>Optimized website SEO, resulting in 40% increase in organic traffic.</li>
+                <li>Designed and implemented inventory management systems integrated with warehouse operations.</li>
+                <li>Built customer analytics tools that provided insights into shopping patterns and preferences.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-semibold mb-4">Featured Projects</h2>
+            <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+              Here are some of the projects I've worked on. Each one presented unique
+              challenges and opportunities to learn and grow as a developer.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Project 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="h-48 bg-gray-200 dark:bg-gray-700 relative">
+                <div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                  <span class="text-2xl font-bold text-primary/40">P</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Patient Portal</h3>
+                <p class="text-gray-500 dark:text-gray-400 mb-4">A comprehensive patient management system for healthcare providers with appointment scheduling and medical records.</p>
+                <div class="flex flex-wrap mb-4">
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">React</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">TypeScript</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">Node.js</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">MongoDB</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">Express</span>
+                </div>
+                <div class="flex gap-3">
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    Code
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="h-48 bg-gray-200 dark:bg-gray-700 relative">
+                <div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                  <span class="text-2xl font-bold text-primary/40">F</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">FinTrack Dashboard</h3>
+                <p class="text-gray-500 dark:text-gray-400 mb-4">Financial analytics platform for tracking investments, expenses and generating insights with customizable reports.</p>
+                <div class="flex flex-wrap mb-4">
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">Vue.js</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">D3.js</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">Firebase</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">Vuex</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">TailwindCSS</span>
+                </div>
+                <div class="flex gap-3">
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    Code
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="h-48 bg-gray-200 dark:bg-gray-700 relative">
+                <div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                  <span class="text-2xl font-bold text-primary/40">E</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">E-commerce Platform</h3>
+                <p class="text-gray-500 dark:text-gray-400 mb-4">Fully responsive e-commerce website with product catalog, shopping cart, payment integration and admin panel.</p>
+                <div class="flex flex-wrap mb-4">
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">React</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">Redux</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">Node.js</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">PostgreSQL</span>
+                  <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded text-xs mr-2 mb-2">Stripe API</span>
+                </div>
+                <div class="flex gap-3">
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    Code
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-16 md:py-24 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-semibold mb-4 text-center">Get In Touch</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-center mb-8 max-w-2xl mx-auto">
+              I'm currently looking for new opportunities. Whether you have a question or just want to say hi, 
+              I'll try my best to get back to you!
+            </p>
+            
+            <div class="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-sm border border-gray-200 dark:border-gray-700">
+              <form id="contactForm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" required>
+                  </div>
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" required>
+                  </div>
+                </div>
+                <div class="mb-6">
+                  <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                  <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" required>
+                </div>
+                <div class="mb-6">
+                  <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                  <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" required></textarea>
+                </div>
+                <div>
+                  <button type="submit" class="bg-primary text-white hover:bg-primary/90 px-5 py-2 rounded-md transition-colors">
+                    Send Message
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 py-8 border-t border-gray-200 dark:border-gray-700">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <a href="#" class="text-xl font-bold text-primary">
+              Dev<span class="text-gray-900 dark:text-white">Portfolio</span>
+            </a>
+          </div>
+          <div class="text-gray-500 dark:text-gray-400 text-sm">
+            &copy; <span id="currentYear"></span> John Developer. All rights reserved.
+          </div>
+          <div class="mt-4 md:mt-0">
+            <ul class="flex space-x-4">
+              <li>
+                <a href="#home" class="text-gray-500 dark:text-gray-400 hover:text-primary">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#about" class="text-gray-500 dark:text-gray-400 hover:text-primary">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#projects" class="text-gray-500 dark:text-gray-400 hover:text-primary">
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a href="#contact" class="text-gray-500 dark:text-gray-400 hover:text-primary">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Set current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear().toString();
+
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('themeToggle');
+      const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+      const body = document.documentElement;
+      const sunIcon = document.querySelector('.sun-icon');
+      const moonIcon = document.querySelector('.moon-icon');
+      const mobileSunIcon = document.querySelector('.mobile-sun-icon');
+      const mobileMoonIcon = document.querySelector('.mobile-moon-icon');
+      
+      // Check for saved theme preference or use preferred color scheme
+      const currentTheme = localStorage.getItem('theme') || 
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      
+      // Set initial theme
+      if (currentTheme === 'dark') {
+        body.classList.add('dark');
+        moonIcon.classList.remove('hidden');
+        sunIcon.classList.add('hidden');
+        mobileMoonIcon.classList.remove('hidden');
+        mobileSunIcon.classList.add('hidden');
+      } else {
+        body.classList.remove('dark');
+        moonIcon.classList.add('hidden');
+        sunIcon.classList.remove('hidden');
+        mobileMoonIcon.classList.add('hidden');
+        mobileSunIcon.classList.remove('hidden');
+      }
+      
+      // Theme toggle function
+      function toggleTheme() {
+        if (body.classList.contains('dark')) {
+          body.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          moonIcon.classList.add('hidden');
+          sunIcon.classList.remove('hidden');
+          mobileMoonIcon.classList.add('hidden');
+          mobileSunIcon.classList.remove('hidden');
+        } else {
+          body.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          moonIcon.classList.remove('hidden');
+          sunIcon.classList.add('hidden');
+          mobileMoonIcon.classList.remove('hidden');
+          mobileSunIcon.classList.add('hidden');
+        }
+      }
+      
+      themeToggle.addEventListener('click', toggleTheme);
+      mobileThemeToggle.addEventListener('click', toggleTheme);
+      
+      // Mobile menu
+      const menuButton = document.getElementById('menuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      menuButton.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.remove('hidden');
+          menuButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          `;
+        } else {
+          mobileMenu.classList.add('hidden');
+          menuButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          `;
+        }
+      });
+      
+      // Close mobile menu when clicking menu items
+      const mobileMenuItems = mobileMenu.querySelectorAll('a');
+      mobileMenuItems.forEach(item => {
+        item.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          `;
+        });
+      });
+      
+      // Navbar scroll effect
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          navbar.classList.add('bg-white/80', 'dark:bg-gray-900/80', 'backdrop-blur-md', 'shadow-md', 'py-4');
+          navbar.classList.remove('py-6');
+        } else {
+          navbar.classList.remove('bg-white/80', 'dark:bg-gray-900/80', 'backdrop-blur-md', 'shadow-md', 'py-4');
+          navbar.classList.add('py-6');
+        }
+      });
+      
+      // Contact form submission
+      const contactForm = document.getElementById('contactForm');
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // In a real application, you would send this data to your server
+        console.log('Form submitted:', { name, email, subject, message });
+        
+        // Show success message (in a real application)
+        alert('Thank you for your message! I will get back to you soon.');
+        
+        // Clear form
+        contactForm.reset();
+      });
+    </script>
   </body>
 </html>
